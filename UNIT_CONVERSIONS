@@ -1,0 +1,71 @@
+UNIT_CONVERSIONS
+-------------------------
+def length_converter(value,from_unit,to_unit):
+    units={
+        "meters": 1,
+        "feet": 0.3048,
+        "inches": 0.0254,
+        "centimeters": 0.01,
+        "millimeters": 0.001
+    }
+    
+    if from_unit in units and to_unit in units:
+        result=value*units[from_unit]/units[to_unit]
+        return result
+    else:
+        return None
+
+def weigth_converter(value,from_unit,to_unit):
+    units={
+        "kilograms": 1,
+        "grams": 0.001,
+        "pounds": 0.453592,
+        "ounces": 0.0283495
+    }
+    
+    if from_unit in units and to_unit in units:
+        result=value*units[from_unit]/units[to_unit]
+        return result
+    else:
+        return None 
+        
+def temperature_converter(value,from_unit,to_unit):
+    if from_unit=="celsius" and to_unit=="fahrenheit":
+        result=(value*9/5)+32
+    elif from_unit=="fahrenheit" and to_unit=="celsius":
+        result=(value-32)*5/9
+        
+    else:
+        return None
+    return result    
+        
+def main():
+    print("welcome to unit conversions!")
+    print("available conversions are:(length,weight & temperature:)")
+    while True:
+        conversion_type=int(input("which conversion do u want enter(1/2/3)(length=1 or weight=2 or temperature=3) do u want quit the coversion click (0): "))
+        if conversion_type==0:
+            print("u are exit from conversion")
+            break
+        if conversion_type not in [1,2,3]:
+            print("Invalid input conversion")
+        value=float(input("enter value to convert:"))
+        from_unit=input("enter conversion to convert from :")
+        to_unit=input("enter conversion to convert to :")
+        if conversion_type==1:
+            result=length_converter(value,from_unit,to_unit)
+        elif conversion_type==2:
+            result=weigth_converter(value,from_unit,to_unit)
+        elif conversion_type==3:
+            result=temperature_converter(value,from_unit,to_unit)
+        else:
+            result = None
+            
+        if result is not None:
+            print(f"{value}  {from_unit} is equal to {result:.2f}{to_unit}")
+        else:
+            print("invalid type conversion")
+            
+if __name__=="__main__":
+    main()
+
